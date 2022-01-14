@@ -1,0 +1,16 @@
+{
+  "name": "surf-bums-minter",
+  "version": "1.0.0",
+  "description": "mints the collection of surf bums",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon index.js"
+  },
+  "author": "Enrique Goudet",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
