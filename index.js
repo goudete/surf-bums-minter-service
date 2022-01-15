@@ -8,6 +8,8 @@ app.get('/', (req, res) => {
    res.send('Surf Bums Minter Initialized...')
 });
 
+
+app.get('/mintCharacter', require('./handlers/mintCharacter'));
 app.get('/mintPlatinumCharacter', require('./handlers/mintPlatinumCharacter'));
 app.get('/mintSilverCharacter', require('./handlers/mintSilverCharacter'));
 
