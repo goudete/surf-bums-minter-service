@@ -10,10 +10,8 @@ const {
     rarityWeights
 } = require("../input/config");
 
-
 const { compileMetadata } = require("../services/metadata");
-
-const { createFile } = require("../services/filesystem");
+const { createCharacter } = require("../services/filesystem");
 
 
 module.exports = async (req, res) => {
@@ -26,19 +24,15 @@ module.exports = async (req, res) => {
         console.log("# - Surf Bums coming out of the tube");
         console.log("##################");
 
-        // image data collection
-        let imageDataArray = [];
-
-        // create NFTs from startEditionFrom to editionSize
+        let characters = [];
         let editionCount = startEditionFrom;
 
         while (editionCount <= editionSize) {
             console.log("-----------------");
             console.log("Creating %d of %d", editionCount, editionSize);
 
-            const handleFinal = async () => {
-                // create image files and return object array of created images
-                [...imageDataArray] = await createFile(
+            const giveBirth = async () => {
+                const character = await createCharacter(
                     canvas,
                     ctx,
                     layers,
@@ -47,15 +41,15 @@ module.exports = async (req, res) => {
                     editionCount,
                     editionSize,
                     rarityWeights,
-                    imageDataArray
                 );
+                characters.push(character);
             };
 
-            await handleFinal();
+            await giveBirth();
             editionCount++;
         }
 
-        await compileMetadata(editionCount, imageDataArray);
+        await compileMetadata(editionSize, characters);
 
         console.log();
         console.log("#########################################");
@@ -63,9 +57,12 @@ module.exports = async (req, res) => {
         console.log("#########################################");
         console.log();
 
-        return res.json({ message: 'success' })
+        return res.json({
+            message: 'success',
+            characters
+        })
 
     } catch (error) {
-        return res.json({ error })
+        console.log(error)
     }
 }
