@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
             editionCount++;
         }
 
-        await compileMetadata(editionSize, characters);
+        await compileMetadata(characters);
 
         console.log();
         console.log("#########################################");
