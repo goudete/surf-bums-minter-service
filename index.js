@@ -5,14 +5,12 @@ const port = 3000;
 
 
 app.get('/', (req, res) => {
-   res.send('Surf Bums Minter Initialized...')
+   res.send('welcome to the minter engine...')
 });
 
-
 app.get('/mintCharacter', require('./handlers/mintCharacter'));
-app.get('/mintPlatinumCharacter', require('./handlers/mintPlatinumCharacter'));
-app.get('/mintSilverCharacter', require('./handlers/mintSilverCharacter'));
+
 
 app.listen(port, () => {
-   console.log(`Listening at http://localhost:${port}`);
+   console.log(`minter listening at http://localhost:${port}`);
 });
